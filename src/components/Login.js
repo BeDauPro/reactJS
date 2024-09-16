@@ -1,13 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loginApi } from "../services/UserService";
+import { toast } from 'react-toastify';
+import { useNavigate} from 'react-router-dom'
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
     const[isShowPassword, setIsShowPassword]=useState(false);
+
+    const[loadingAPI, setLoadingAPI]=useState(false);
+    useEffect(()=>{
+        let token = localStorage.getItem("token");
+        if(token){
+            navigate("/");
+        }
+    })
+
+    const handleLogin = async() =>{
+        if(!email || !password){
+            toast.error("Email/Password is required!");
+            return;
+        }
+        setLoadingAPI(true);
+        let res = await loginApi(email,password);
+        console.log("check res", res)
+        if(res && res.token){
+            localStorage.setItem("token", res.token);
+            navigate("/");
+        } else {
+            if(res && res.status === 400){
+                toast.error(res.data.error);
+            }
+        }
+        setLoadingAPI(false);
+    }
+
     return(<>
         <div className="login-container col-12-sm-4">
             <div className="title">Log in</div>
-            <div className="text">Email or username</div>
+            <div className="text">Email (eve.holt@reqres.in) or username</div>
             <input type="text" placeholder="Email or username"
             value={email}
             onChange={(event)=> setEmail(event.target.value)}
@@ -26,7 +58,10 @@ const Login = () => {
 
             <button className={email && password ? "active": ""}
             disabled={email && password ? false:true}
-            >Login</button>
+            onClick={()=> handleLogin()}
+            >
+                {loadingAPI && <i class="fa-solid fa-sync fa-spin"></i>}
+                 &nbsp;Login</button>
             <div className="back">
             <i className="fa-solid fa-circle-chevron-left"></i> Go back
             </div>
