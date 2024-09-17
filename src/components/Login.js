@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext} from "react";
 import { loginApi } from "../services/UserService";
 import { toast } from 'react-toastify';
 import { useNavigate} from 'react-router-dom'
+import { UserContext } from '../context/UserContext';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { loginContext } = useContext(UserContext);
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
     const[isShowPassword, setIsShowPassword]=useState(false);
 
     const[loadingAPI, setLoadingAPI]=useState(false);
-    useEffect(()=>{
-        let token = localStorage.getItem("token");
-        if(token){
-            navigate("/");
-        }
-    })
+    // useEffect(()=>{
+    //     let token = localStorage.getItem("token");
+    //     if(token){
+    //         navigate("/");
+    //     }
+    // })
 
     const handleLogin = async() =>{
         if(!email || !password){
@@ -24,9 +26,9 @@ const Login = () => {
         }
         setLoadingAPI(true);
         let res = await loginApi(email,password);
-        console.log("check res", res)
+        
         if(res && res.token){
-            localStorage.setItem("token", res.token);
+            loginContext(email, res.token);
             navigate("/");
         } else {
             if(res && res.status === 400){
@@ -36,6 +38,9 @@ const Login = () => {
         setLoadingAPI(false);
     }
 
+    const handleGoBack=()=>{
+        navigate("/");
+    }
     return(<>
         <div className="login-container col-12-sm-4">
             <div className="title">Log in</div>
@@ -63,7 +68,8 @@ const Login = () => {
                 {loadingAPI && <i class="fa-solid fa-sync fa-spin"></i>}
                  &nbsp;Login</button>
             <div className="back">
-            <i className="fa-solid fa-circle-chevron-left"></i> Go back
+            <i className="fa-solid fa-circle-chevron-left"></i> 
+            <span onClick={()=> handleGoBack()}>&nbsp;Go back</span>
             </div>
         </div>
     </>)
