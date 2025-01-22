@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/eric-app/static/css/main.aa04ce72.chunk.css",
+    "main.js": "/eric-app/static/js/main.0c434757.chunk.js",
+    "main.js.map": "/eric-app/static/js/main.0c434757.chunk.js.map",
+    "runtime-main.js": "/eric-app/static/js/runtime-main.1d6dba3d.js",
+    "runtime-main.js.map": "/eric-app/static/js/runtime-main.1d6dba3d.js.map",
+    "static/css/2.05e1f2c2.chunk.css": "/eric-app/static/css/2.05e1f2c2.chunk.css",
+    "static/js/2.b95248eb.chunk.js": "/eric-app/static/js/2.b95248eb.chunk.js",
+    "static/js/2.b95248eb.chunk.js.map": "/eric-app/static/js/2.b95248eb.chunk.js.map",
+    "static/js/3.a908eb28.chunk.js": "/eric-app/static/js/3.a908eb28.chunk.js",
+    "static/js/3.a908eb28.chunk.js.map": "/eric-app/static/js/3.a908eb28.chunk.js.map",
+    "index.html": "/eric-app/index.html",
+    "static/css/2.05e1f2c2.chunk.css.map": "/eric-app/static/css/2.05e1f2c2.chunk.css.map",
+    "static/css/main.aa04ce72.chunk.css.map": "/eric-app/static/css/main.aa04ce72.chunk.css.map",
+    "static/js/2.b95248eb.chunk.js.LICENSE.txt": "/eric-app/static/js/2.b95248eb.chunk.js.LICENSE.txt",
+    "static/media/all.min.css": "/eric-app/static/media/fa-v4compatibility.afac8956.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1d6dba3d.js",
+    "static/css/2.05e1f2c2.chunk.css",
+    "static/js/2.b95248eb.chunk.js",
+    "static/css/main.aa04ce72.chunk.css",
+    "static/js/main.0c434757.chunk.js"
+  ]
+}
